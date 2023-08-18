@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-A-Sketch</title>
+    <link rel = "stylesheet" href = "style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Offside&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class = "header-container">
+        <div class = "name">
+            Etch-A-Sketch
+        </div>
+    </div>
+
+    <div class = "main-container">
+        <div class = "settings">
+            <div id = "colorPicker-cont">
+                <input id = "colorPicker" type = "color" value = "#333333">
+            </div>
+            <div class = "color-mode">
+                <button class = "selected color-mode-button "> Color </button>
+            </div>
+            <div class = "rainbow-mode">
+                <button class = "rainbow-mode-button"> Rainbow </button>
+            </div>
+            <div class = "eraser-mode">
+                <button class = "eraser-mode-button">
+                    Eraser
+                </button>
+            </div>
+
+            <div class = "clear-cont">
+                <button class = "clear"> Clear </button>
+            </div>
+
+            <div class = "size-container">
+                <div class = "size-number">
+                    16 x 16
+                </div>
+
+                <div class = "sizeSliderr">
+                    <input id="sizeSlider" type="range" value="16" min="1" max="64">
+                </div>
+            </div>
+            
+           
+          
+        </div>
+
+        <div class = "board">
+          <div class = "columns">
+              <div class = "column">
+
+              </div>
+          </div>
+        </div>
+    </div>
+
+    <script src = "script.js"></script>
+</body>
+</html>

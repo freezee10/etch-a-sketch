@@ -1,0 +1,100 @@
+body {
+    font-family: Offside;
+   
+}
+
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name {
+    font-size: 48px;
+    margin-top: 40px;
+}
+
+.main-container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-right: 215px;
+}
+
+.columns {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.columns div {
+    display: flex;
+ 
+}
+
+.pixel {
+    width: 25px;
+    height: 25px;
+
+    
+}
+
+.board {
+    border: 4px black solid;
+    box-sizing: border-box;
+}
+
+.black {
+    background-color: black;
+}
+
+.hover {
+    background-color: rgb(232, 232, 252);
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+#colorPicker {
+    padding: 0px;
+    
+ border: none;
+    background-color: white;
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+
+}
+
+
+
+
+
+.color-mode-button, .rainbow-mode-button, .eraser-mode-button, .clear {
+    background-color: white;
+    padding: 10px 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: Offside;
+}
+
+.selected {
+    background-color: black;
+    color: white;
+    
+
+}
+
+.size-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}

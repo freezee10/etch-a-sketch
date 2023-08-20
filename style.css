@@ -22,6 +22,10 @@ body {
     margin-right: 215px;
 }
 
+.mode-selection {
+    display: flex;
+    gap: 20px;
+}
 .columns {
     display: flex;
     flex-direction: column;
@@ -76,12 +80,16 @@ body {
 
 
 
-.color-mode-button, .rainbow-mode-button, .eraser-mode-button, .clear {
+.color-mode-button, .rainbow-mode-button, .eraser-mode-button, .clear, .click, .hover {
     background-color: white;
     padding: 10px 50px;
     border-radius: 10px;
     cursor: pointer;
     font-family: Offside;
+}
+
+.click, .hover {
+    padding: 10px 20px;
 }
 
 .selected {

@@ -1,5 +1,5 @@
 let selectedButton = "Color";
-
+let mode = "Click";
 createBoardFromButton(16);
 
 selectionStyles();
@@ -72,6 +72,23 @@ function selectionStyles() {
         removeOtherStyles();
         document.querySelector('.eraser-mode-button').classList.add('selected');
     })
+
+    document.querySelector('.click').addEventListener('click', () => {
+        document.querySelector('.hover').classList.remove('selected');
+        mode = "Click";
+        
+document.querySelector('.click').classList.add('selected');
+    })
+
+    document.querySelector('.hover').addEventListener('click', () => {
+        document.querySelector('.click').classList.remove('selected');
+        mode = "Hover";
+        renderOptions();
+        
+        document.querySelector('.hover').classList.add('selected');
+    })
+
+
 }
 
 function removeOtherStyles() {
@@ -106,8 +123,12 @@ document.getElementById('sizeSlider').addEventListener('input', () => {
 })
 
 function renderOptions() {
+    if(mode === "Click") {
+        
     document.querySelectorAll('.pixel').forEach((pixel) => {
-        pixel.addEventListener('click', () => {
+      
+        pixel.addEventListener('mouseover', () => {
+          
             if(selectedButton === "Color") {
          
                 let color = document.getElementById("colorPicker").value;
@@ -118,6 +139,25 @@ function renderOptions() {
                 let randomColor = '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
                 pixel.style.backgroundColor = `${randomColor}`;
             }
+       
         })
     })
+} else if(mode === "Hover") {
+
+}
+
+
+}
+
+function hover(pixel) {
+    if(selectedButton === "Color") {
+         
+        let color = document.getElementById("colorPicker").value;
+        pixel.style.backgroundColor = `${color}`;
+    } else if(selectedButton === "Eraser") {
+        pixel.style.backgroundColor = "white";
+    } else if(selectedButton = "Rainbow") {
+        let randomColor = '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+        pixel.style.backgroundColor = `${randomColor}`;
+    }
 }

@@ -121,35 +121,91 @@ document.getElementById('sizeSlider').addEventListener('input', () => {
     document.querySelector('.size-number').innerHTML = `${num} x ${num}`;
 
 })
+// ... Your existing code ... figure out how this works
 
 function renderOptions() {
-    if(mode === "Click") {
-        
-    document.querySelectorAll('.pixel').forEach((pixel) => {
-      
-        pixel.addEventListener('mouseover', () => {
-          
-            if(selectedButton === "Color") {
-         
+    if (mode === "Click") {
+        // Attach click event listener to each pixel
+        document.querySelectorAll('.pixel').forEach((pixel) => {
+            pixel.addEventListener('click', () => addClick(pixel));
+        });
+
+        // Add mouse down event listener to the board container
+        document.querySelector('.board').addEventListener('mousedown', handleMouseDown);
+        // Add mouse move event listener to the document
+        document.addEventListener('mousemove', handleMouseMove);
+        // Add mouse up event listener to the document
+        document.addEventListener('mouseup', handleMouseUp);
+    } else if (mode === "Hover") {
+        console.log('hover');
+        // Remove mouse down, move, and up event listeners
+        document.querySelector('.board').removeEventListener('mousedown', handleMouseDown);
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+
+        // Attach hover event listener to each pixel
+        document.querySelectorAll('.pixel').forEach((pixel) => {
+            pixel.addEventListener('mouseenter', () => hover(pixel));
+        });
+    }
+}
+
+let isMouseDown = false; // To track whether the mouse button is pressed
+
+// Event listener for mouse down
+function handleMouseDown() {
+    isMouseDown = true;
+}
+
+// Event listener for mouse move while the mouse button is held down
+function handleMouseMove(event) {
+    if (isMouseDown) {
+        const pixel = findPixel(event.target);
+        if (pixel) {
+            // Call the appropriate function based on the selected button
+            if (selectedButton === "Color") {
                 let color = document.getElementById("colorPicker").value;
                 pixel.style.backgroundColor = `${color}`;
-            } else if(selectedButton === "Eraser") {
+            } else if (selectedButton === "Eraser") {
                 pixel.style.backgroundColor = "white";
-            } else if(selectedButton = "Rainbow") {
-                let randomColor = '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+            } else if (selectedButton === "Rainbow") {
+                let randomColor = '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
                 pixel.style.backgroundColor = `${randomColor}`;
             }
-       
-        })
-    })
-} else if(mode === "Hover") {
-
+        }
+    }
 }
 
-
+// Event listener for mouse up
+function handleMouseUp() {
+    isMouseDown = false;
 }
+
+// Helper function to find the closest pixel element
+function findPixel(element) {
+    while (element && !element.classList.contains('pixel')) {
+        element = element.parentElement;
+    }
+    return element;
+}
+
+// ... Rest of your code ...
+
 
 function hover(pixel) {
+    if(selectedButton === "Color") {
+         
+        let color = document.getElementById("colorPicker").value;
+        pixel.style.backgroundColor = `${color}`;
+    } else if(selectedButton === "Eraser") {
+        pixel.style.backgroundColor = "white";
+    } else if(selectedButton = "Rainbow") {
+        let randomColor = '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+        pixel.style.backgroundColor = `${randomColor}`;
+    }
+}
+
+function addClick(pixel) {
     if(selectedButton === "Color") {
          
         let color = document.getElementById("colorPicker").value;

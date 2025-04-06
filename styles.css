@@ -1,0 +1,39 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: Offside;
+
+}
+
+.name {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 55px;
+  font-weight: normal;
+}
+
+.centerify {
+  display: flex;
+margin-top: 30px;
+margin-left: 40%;
+  
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.board {
+  display: flex;
+  width: 600px;
+  height: 600px;
+  border: 1px solid black;
+  flex-wrap: wrap;
+}
+
+.square {
+  border: .01px black solid;
+box-sizing: border-box;
+
+}

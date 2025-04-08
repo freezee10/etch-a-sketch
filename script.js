@@ -1,11 +1,13 @@
 let amount = 0;
+const BOARD_WH = 500;
+createBoard(10);
 
-createBoard(5);
+
 function createBoard(amount)
 {
   let html = "";
-  let widthAndHeight = 600 / amount;
-  let height = 600 / amount;
+  let widthAndHeight = BOARD_WH / amount;
+  let height = BOARD_WH / amount;
   for(let row = 0; row < amount * amount; row++)
   {
 

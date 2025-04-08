@@ -26,8 +26,8 @@ margin-left: 40%;
 
 .board {
   display: flex;
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   border: 1px solid black;
   flex-wrap: wrap;
 }

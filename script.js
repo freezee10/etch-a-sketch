@@ -1,15 +1,16 @@
 let colorMode = "Click";
 let color = "Color";
 let amount = 0;
+let board = document.querySelector(".board");
 const BOARD_WH = 500;
 let clickButton = document.querySelector('.click');
-
 let hoverButton = document.querySelector('.hover');
 let colorButton = document.querySelector('.color');
 let rainbowButton = document.querySelector('.rainbow');
 let deleteButton = document.querySelector('.delete');
 let clearButton = document.querySelector('.clear');
-createBoard(8);
+let resizeButton = document.querySelector('.resize');
+createBoard(10);
 
 
 function createBoard(amount)
@@ -22,7 +23,7 @@ function createBoard(amount)
 
     html += `<div style="width: ${widthAndHeight}px; height: ${height}px;" class="square"></div>`;
   }
-  document.querySelector(".board").innerHTML = html;
+  board.innerHTML = html;
 }
 
 configClickEvents();
@@ -30,47 +31,101 @@ configClickEvents();
 function configClickEvents()
 {
   let pixels = document.querySelectorAll('.square');
+
   for(let i = 0; i < pixels.length; i++)
   {
     let pixel = pixels[i];
-    pixel.addEventListener('mouseover', () => {
-      decideAction(pixel);
-     // console.log('hi');
-
-    });
+   
+  
+      if(colorMode === "Click")
+      {
+        pixel.addEventListener('click', handleEvent);
+      }
+      else if(colorMode === "Hover")
+      {
+        pixel.addEventListener('mouseover', handleEvent);
+      }
+     
+     
+    
+    
+   
+ 
+  
   }
 }
 
+function handleEvent(e) {
+  decideAction(e.target);
+}
+
+
+
+function removeEventListeners()
+{
+  let pixels = document.querySelectorAll('.square');
+  for(let i = 0; i < pixels.length; i++)
+  {
+    let pixel = pixels[i];
+   
+    pixel.removeEventListener('click', handleEvent);
+     
+    pixel.removeEventListener('mouseover', handleEvent);
+      
+  
+  }
+}
 function decideAction(pixel)
 {
-  let selectedColor = document.querySelector('.color').value;
-  if(colorMode === "Click")
+
+
+  if(color === "Color")
   {
+
+    let selectedColor = document.querySelector('.color-selector').value;
     pixel.style.backgroundColor = selectedColor;
+
   }
 
-  if(colorMode == 'Delete')
+  if(color === 'Delete')
   {
     pixel.style.backgroundColor = "white";
+  }
+
+  if(color === "Rainbow")
+  {
+    let randomColor = "#" + Math.floor(Math.random() * 1677215).toString(16);
+    pixel.style.backgroundColor = randomColor;
   }
   
 }
 
 
+
+
 // configurate controls
 clickButton.addEventListener('click', () => {
+  removeEventListeners();
   colorMode = "Click";
+  
+  configClickEvents("Click");
   clickButton.classList.remove('selected');
   hoverButton.classList.remove('selected');
   clickButton.classList.add('selected');
+
+
 });
 
 hoverButton.addEventListener('click', () => {
+  removeEventListeners();
   colorMode = "Hover";
+  
+  configClickEvents("Hover");
   clickButton.classList.remove('selected');
   hoverButton.classList.remove('selected');
  
   hoverButton.classList.add('selected');
+
 });
 
 colorButton.addEventListener('click', () => {
@@ -96,7 +151,7 @@ rainbowButton.addEventListener('click', () => {
 })
 
 deleteButton.addEventListener('click', () => {
-  color = "Color";
+  color = "Delete";
   colorButton.classList.remove('selected');
   rainbowButton.classList.remove('selected');
   deleteButton.classList.remove('selected');
@@ -105,3 +160,39 @@ deleteButton.addEventListener('click', () => {
  
 
 })
+
+resizeButton.addEventListener('click', () => {
+  resize();
+})
+
+clearButton.addEventListener('click', clearBoard);
+
+function clearBoard()
+{
+  let pixels = document.querySelectorAll('.square');
+  for(let i = 0; i < pixels.length; i++)
+  {
+    pixels[i].style.backgroundColor = "white";
+  }
+}
+
+function resize()
+{
+  let number = +prompt("Number: ");
+  if(number > 100)
+  {
+    alert("Too large! Max 100")
+    return;
+  }
+
+  board.innerHTML = "";
+  color = "Color";
+  colorButton.classList.remove('selected');
+  rainbowButton.classList.remove('selected');
+  deleteButton.classList.remove('selected');
+  
+  colorButton.classList.add('selected');
+
+  createBoard(number);
+  configClickEvents();
+}

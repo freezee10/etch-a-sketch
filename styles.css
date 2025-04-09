@@ -16,11 +16,11 @@
   display: flex;
 margin-top: 30px;
 margin-left: 19%;
-  gap: 100px;
+  gap: 50px;
 }
 
 .controls {
-  margin-top: 30px;
+
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -85,3 +85,4 @@ input[type="color"]::-webkit-color-swatch {
   display: flex;
   gap: 15px;
 }
+

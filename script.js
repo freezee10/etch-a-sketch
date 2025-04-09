@@ -1,4 +1,3 @@
-let colorMode = "Click";
 let color = "Color";
 let amount = 0;
 let board = document.querySelector(".board");
@@ -36,16 +35,12 @@ function configClickEvents()
   {
     let pixel = pixels[i];
    
-  
-      if(colorMode === "Click")
-      {
-        pixel.addEventListener('click', handleEvent);
-      }
-      else if(colorMode === "Hover")
-      {
-        pixel.addEventListener('mouseover', handleEvent);
-      }
-     
+
+        pixel.addEventListener("mousedown", handleEvent);
+  pixel.addEventListener("mouseover", event => {
+    if (event.buttons == 1) handleEvent(event);
+  });
+      
      
     
     
@@ -56,6 +51,7 @@ function configClickEvents()
 }
 
 function handleEvent(e) {
+  
   decideAction(e.target);
 }
 
@@ -103,30 +99,8 @@ function decideAction(pixel)
 
 
 
-// configurate controls
-clickButton.addEventListener('click', () => {
-  removeEventListeners();
-  colorMode = "Click";
-  
-  configClickEvents("Click");
-  clickButton.classList.remove('selected');
-  hoverButton.classList.remove('selected');
-  clickButton.classList.add('selected');
 
 
-});
-
-hoverButton.addEventListener('click', () => {
-  removeEventListeners();
-  colorMode = "Hover";
-  
-  configClickEvents("Hover");
-  clickButton.classList.remove('selected');
-  hoverButton.classList.remove('selected');
- 
-  hoverButton.classList.add('selected');
-
-});
 
 colorButton.addEventListener('click', () => {
   color = "Color";

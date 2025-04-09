@@ -1,8 +1,14 @@
-let mode = "Click";
+let colorMode = "Click";
+let color = "Color";
 let amount = 0;
 const BOARD_WH = 500;
 let clickButton = document.querySelector('.click');
+
+let hoverButton = document.querySelector('.hover');
+let colorButton = document.querySelector('.color');
+let rainbowButton = document.querySelector('.rainbow');
 let deleteButton = document.querySelector('.delete');
+let clearButton = document.querySelector('.clear');
 createBoard(8);
 
 
@@ -38,12 +44,12 @@ function configClickEvents()
 function decideAction(pixel)
 {
   let selectedColor = document.querySelector('.color').value;
-  if(mode === "Click")
+  if(colorMode === "Click")
   {
     pixel.style.backgroundColor = selectedColor;
   }
 
-  if(mode == 'Delete')
+  if(colorMode == 'Delete')
   {
     pixel.style.backgroundColor = "white";
   }
@@ -51,18 +57,51 @@ function decideAction(pixel)
 }
 
 
-
+// configurate controls
 clickButton.addEventListener('click', () => {
-  mode = "Click";
-  document.querySelector('.click').classList.remove('selected');
-  document.querySelector('.delete').classList.remove('selected');
+  colorMode = "Click";
+  clickButton.classList.remove('selected');
+  hoverButton.classList.remove('selected');
   clickButton.classList.add('selected');
 });
 
-deleteButton.addEventListener('click', () => {
-  mode = "Delete";
-  document.querySelector('.click').classList.remove('selected');
-  document.querySelector('.delete').classList.remove('selected');
+hoverButton.addEventListener('click', () => {
+  colorMode = "Hover";
+  clickButton.classList.remove('selected');
+  hoverButton.classList.remove('selected');
  
-  deleteButton.classList.add('selected');
+  hoverButton.classList.add('selected');
 });
+
+colorButton.addEventListener('click', () => {
+  color = "Color";
+  colorButton.classList.remove('selected');
+  rainbowButton.classList.remove('selected');
+  deleteButton.classList.remove('selected');
+  
+  colorButton.classList.add('selected');
+ 
+
+})
+
+rainbowButton.addEventListener('click', () => {
+  color = "Rainbow";
+  colorButton.classList.remove('selected');
+  rainbowButton.classList.remove('selected');
+  deleteButton.classList.remove('selected');
+  
+  rainbowButton.classList.add('selected');
+ 
+
+})
+
+deleteButton.addEventListener('click', () => {
+  color = "Color";
+  colorButton.classList.remove('selected');
+  rainbowButton.classList.remove('selected');
+  deleteButton.classList.remove('selected');
+  
+  deleteButton.classList.add('selected');
+ 
+
+})
